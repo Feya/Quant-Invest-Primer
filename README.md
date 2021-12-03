@@ -1,4 +1,4 @@
-# Quant-Invest-Study
+# Quant Invest Primer
 This is a short course about Quant Investment using Python. 
 
 ## Topics Covered
