@@ -10,6 +10,8 @@ This is a short course about Quant Investment using Python.
 - L1: Python basics for quant investment
 - L2: Data downloading and Frame data manipulation
 - L3: Financial modelling basics
+  - Linear regression model
+  - Logistic regression model
 - L4: Risk modelling I
 - L5: Risk modelling II
 - L6: Expected Return / Alpha signals
