@@ -11,7 +11,7 @@ import pandas as pd
 #pd.core.common.is_list_like = pd.api.types.is_list_like
 
 from pandas_datareader import data as pdr
-import fix_yahoo_finance as yf
+import  as yf
 yf.pdr_override()
 import datetime
 
@@ -45,22 +45,22 @@ df2.columns = ['MoM']
 #combine the factors together
 df_FamaFrench = pd.concat([df_FamaFrench,df2],axis=1)
 
-# #------------------------------------------------------
-# # Get stock price from yahoo finance
-# #------------------------------------------------------
-# # for one stock/index case
-# # ^GSPC is the ticker for S&P500
-# SP500 = pdr.get_data_yahoo('^GSPC', start = start_dt, end = end_dt)
-# ret_Stock = SP500['Adj close'].pct_change().dropna()
+#------------------------------------------------------
+# Get stock price from yahoo finance
+#------------------------------------------------------
+# for one stock/index case
+# ^GSPC is the ticker for S&P500
+SP500 = pdr.get_data_yahoo('^GSPC', start = start_dt, end = end_dt)
+ret_Stock = SP500['Adj Close'].pct_change().dropna()
 
-# # for multiple stock cases
-# tickers = ['AAPL', 'MSFT', 'IBM', 'GOOG', '^GSPC', 'C', 'GE', 'PG', 'CELG', 'DIOD', 'FCNTX']
-# stock_data = getDataBatch(tickers, start_dt, end_dt)
-# #isolate the'Adj close' values and transform the DataFrame
-# daily_close_px = stock_data[['Adj close']].reset_index().pivot(index = 'Date', columns = 'Ticker', values = 'Adj close')
-# #calculate the daily percentage change for 'daily_close_px'
-# daily_pct_change = daily_close_px.pct_change().dropna()
-# daily_pct_change.columns = ['AAPL', 'MSFT', 'IBM', 'GOOG', 'SP500', 'C', 'GE', 'PG', 'CELG', 'DIOD', 'Contra']
+# for multiple stock cases
+tickers = ['AAPL', 'MSFT', 'IBM', 'GOOG', '^GSPC', 'C', 'GE', 'PG', 'CELG', 'DIOD', 'FCNTX']
+stock_data = getDataBatch(tickers, start_dt, end_dt)
+#isolate the'Adj close' values and transform the DataFrame
+daily_close_px = stock_data[['Adj Close']].reset_index().pivot(index = 'Date', columns = 'Ticker', values = 'Adj Close')
+#calculate the daily percentage change for 'daily_close_px'
+daily_pct_change = daily_close_px.pct_change().dropna()
+daily_pct_change.columns = ['AAPL', 'MSFT', 'IBM', 'GOOG', 'SP500', 'C', 'GE', 'PG', 'CELG', 'DIOD', 'Contra']
 
 # # merge the return with FamaFrench
 # df_all = pd.concat([df_FamaFrench],daily_pct_change*100),axis = 1).dropna()
